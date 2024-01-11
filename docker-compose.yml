@@ -1,0 +1,78 @@
+version: '3.9'
+services:
+  nginx:
+    build: ./requirements/nginx
+    container_name: nginx
+    ports:
+      - "443:443"
+    volumes:
+      - wp_data:/var/www/
+    depends_on:
+      - wordpress
+    restart: always
+    env_file: ./.env
+    networks:
+      - stribuzi
+
+  wordpress:
+    container_name: wordpress
+    build: ./requirements/wordpress
+    volumes:
+      - wp_data:/var/www/
+    restart: always
+    env_file: ./.env
+    depends_on:
+      - mysql 
+    networks:
+      - stribuzi
+  mysql:
+    # image: mariadb
+    build: ./requirements/mariadb
+    container_name: mariadb
+    volumes:
+      - db_data:/var/lib/mysql
+    env_file: ./.env
+    restart: always
+    # ports:
+    #   - "3306:3306"
+    networks:
+      - stribuzi
+  adminer:
+    build: ./requirements/bonus/adminer
+    volumes:
+    - wp_data:/var/www/
+    depends_on:
+      - nginx
+    restart: always
+    networks:
+      - stribuzi
+  cv_website:
+    build: ./requirements/bonus/cv_website
+    volumes:
+    - wp_data:/var/www/
+    depends_on:
+      - adminer
+    restart: always
+    networks:
+      - stribuzi
+
+## sudo mount -t vboxsf [[nomecartellasulmac]] /home/$user/[[pathdove vuoi mettere la cartella sulla virtualbox]]
+
+
+volumes:
+  wp_data:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: /$HOME/Desktop/data
+  db_data:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: /$HOME/Desktop/data
+
+networks:
+  stribuzi:
+    name: stribuzi.42.fr

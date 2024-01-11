@@ -1,0 +1,61 @@
+<html>
+	<body style="background-color: #4a148c !important">
+		<link rel="preconnect" href="https://fonts.googleapis.com"> 
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;900&display=swap" rel="stylesheet">
+		<style>
+			*
+			{
+				font-family: "Montserrat";
+			}
+			body
+			{
+				overflow: hidden;
+			}
+			h1
+			{
+				font-size: 6rem;
+				color: #fff;
+				text-align: center;
+			}
+			h2
+			{
+				font-size: 2rem;
+				color: beige;
+				text-align: center;
+			}
+			h2 > a
+			{
+				color: rgb(221, 221, 221);
+				font-weight: 500;
+				text-decoration: none;
+			}
+			h2 > a:hover
+			{
+				color: crimson;
+				border-bottom: 1px solid red;
+				text-decoration: none;
+				transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+			}
+			p
+			{
+				text-align: center;
+				color: white;
+			}
+			.centered
+			{
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+			}
+		</style>
+		<div class="centered">
+			<h1>Welcome to INCEPTION</h1>
+			<p style="margin-top: -50px;">A project that will fuck your mind.</p>
+			<h2><a href="/wordpress/"  target="_blank">Wordpress</a> <a href="latest-mysql-en.php" target="_blank">Adminer</a> <a href="/cv_website/" target="_blank">CV Website</a></h2>
+		</div>
+		<canvas id='canvas'></canvas>
+		<script src="./hex.js"></script>
+	</body>
+</html>
